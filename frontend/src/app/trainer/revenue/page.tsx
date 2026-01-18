@@ -24,13 +24,40 @@ export default function TrainerRevenuePage() {
       .catch(() => setRevenue(null));
   }, []);
 
+  function downloadCsv(filename: string, rows: string[][]) {
+    const content = rows
+      .map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+    const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleExport() {
+    const rows: string[][] = [
+      ["Periode", "Montant"],
+      ["Ce mois", revenue?.month ?? "-"],
+      ["Croissance", revenue?.growth ?? "-"],
+      ["En attente", revenue?.pending ?? "-"],
+    ];
+    downloadCsv("digitechpro-trainer-revenue.csv", rows);
+  }
+
   return (
     <AuthGuard role="TRAINER">
       <DashboardShell
         title="Revenus"
-        subtitle="Suivez vos gains et les paiements en attente." 
+        subtitle="Suivez vos gains et les paiements en attente."
         accent="Formateur"
         role="TRAINER"
+        exportLabel="Exporter"
+        primaryLabel="Exporter rapide"
+        onExport={handleExport}
+        onPrimaryAction={handleExport}
       >
         <section className="grid gap-4 md:grid-cols-3">
           <div className="rounded-2xl bg-white p-5 shadow-soft">

@@ -25,13 +25,36 @@ export default function TrainerProgressPage() {
       .catch(() => setCourses([]));
   }, []);
 
+  function downloadCsv(filename: string, rows: string[][]) {
+    const content = rows
+      .map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+    const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleExport() {
+    const rows: string[][] = [["Formation", "Progression", "Apprenants"]];
+    courses.forEach((course) => rows.push([course.title, course.completion, String(course.learners)]));
+    downloadCsv("digitechpro-trainer-progress.csv", rows);
+  }
+
   return (
     <AuthGuard role="TRAINER">
       <DashboardShell
         title="Progression"
-        subtitle="Analysez l'avancement des formations par groupe." 
+        subtitle="Analysez l'avancement des formations par groupe."
         accent="Formateur"
         role="TRAINER"
+        exportLabel="Exporter"
+        primaryLabel="Exporter rapide"
+        onExport={handleExport}
+        onPrimaryAction={handleExport}
       >
         <section className="rounded-3xl bg-white p-6 shadow-soft">
           <h2 className="text-lg font-semibold">Progression par cours</h2>

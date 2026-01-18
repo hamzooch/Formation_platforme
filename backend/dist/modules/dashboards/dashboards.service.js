@@ -101,6 +101,7 @@ let DashboardsService = class DashboardsService {
                     { label: "Progression moyenne", value: "71%" },
                 ],
                 courses: courses.map((course) => ({
+                    id: course.id,
                     title: course.title,
                     status: course.status === "PUBLISHED" ? "Publie" : "Brouillon",
                     learners: 0,

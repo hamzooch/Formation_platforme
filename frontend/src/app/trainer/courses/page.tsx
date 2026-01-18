@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AuthGuard } from "../../../components/AuthGuard";
 import { DashboardShell } from "../../../components/DashboardShell";
 import { apiGet } from "../../../lib/api";
@@ -36,11 +37,14 @@ type TrainerPayload = {
 };
 
 export default function TrainerCoursesPage() {
+  const createSectionRef = useRef<HTMLDivElement | null>(null);
+  const titleInputRef = useRef<HTMLInputElement | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [saving, setSaving] = useState(false);
+  const [catalogMessage, setCatalogMessage] = useState("");
   const [selectedCourseId, setSelectedCourseId] = useState("");
   const [modules, setModules] = useState<Module[]>([]);
   const [moduleTitle, setModuleTitle] = useState("");
@@ -133,6 +137,36 @@ export default function TrainerCoursesPage() {
     setLessons(updated);
   }
 
+  function downloadCsv(filename: string, rows: string[][]) {
+    const content = rows
+      .map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+    const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleExport() {
+    const rows: string[][] = [["Titre", "Statut", "Apprenants", "Completion"]];
+    courses.forEach((course) => {
+      rows.push([course.title, course.status, String(course.learners), course.completion]);
+    });
+    downloadCsv("digitechpro-trainer-courses.csv", rows);
+  }
+
+  function handleNewCourse() {
+    createSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    titleInputRef.current?.focus();
+  }
+
+  function handleMissingCourse() {
+    setCatalogMessage("Impossible d'ouvrir cette formation pour le moment.");
+  }
+
   return (
     <AuthGuard role="TRAINER">
       <DashboardShell
@@ -140,8 +174,12 @@ export default function TrainerCoursesPage() {
         subtitle="Gerez vos cours, brouillons et publications."
         accent="Formateur"
         role="TRAINER"
+        exportLabel="Exporter"
+        primaryLabel="Nouvelle formation"
+        onExport={handleExport}
+        onPrimaryAction={handleNewCourse}
       >
-        <section className="rounded-3xl bg-white p-6 shadow-soft">
+        <section ref={createSectionRef} className="rounded-3xl bg-white p-6 shadow-soft">
           <h2 className="text-lg font-semibold">Creer une formation</h2>
           <form onSubmit={handleCreate} className="mt-4 grid gap-3">
             <input
@@ -149,6 +187,7 @@ export default function TrainerCoursesPage() {
               placeholder="Titre"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
+              ref={titleInputRef}
             />
             <textarea
               className="min-h-[100px] rounded-xl border border-ink/10 px-3 py-2 text-sm"
@@ -299,7 +338,11 @@ export default function TrainerCoursesPage() {
         <section className="rounded-3xl bg-white p-6 shadow-soft">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="text-lg font-semibold">Catalogue formateur</h2>
-            <button className="rounded-xl bg-[#161310] px-3 py-2 text-xs font-semibold text-[#f5efe6]">
+            <button
+              className="rounded-xl bg-[#161310] px-3 py-2 text-xs font-semibold text-[#f5efe6]"
+              onClick={handleNewCourse}
+              type="button"
+            >
               Nouvelle formation
             </button>
           </div>
@@ -318,13 +361,27 @@ export default function TrainerCoursesPage() {
                   </div>
                   <span className="text-xs text-muted">{course.learners} apprenants</span>
                   <span className="text-xs text-muted">{course.completion}</span>
-                  <button className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold">
-                    Gerer
-                  </button>
+                  {course.id ? (
+                    <Link
+                      href={`/trainer/courses/${course.id}`}
+                      className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold"
+                    >
+                      Gerer
+                    </Link>
+                  ) : (
+                    <button
+                      className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold"
+                      onClick={handleMissingCourse}
+                      type="button"
+                    >
+                      Gerer
+                    </button>
+                  )}
                 </div>
               ))
             )}
           </div>
+          {catalogMessage ? <p className="mt-4 text-sm text-muted">{catalogMessage}</p> : null}
         </section>
       </DashboardShell>
     </AuthGuard>

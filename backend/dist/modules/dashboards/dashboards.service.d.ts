@@ -32,6 +32,7 @@ export declare class DashboardsService {
             value: string;
         }[];
         courses: {
+            id: string;
             title: string;
             status: string;
             learners: number;

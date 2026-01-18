@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { AuthGuard } from "../../../components/AuthGuard";
 import { DashboardShell } from "../../../components/DashboardShell";
 import { apiGet } from "../../../lib/api";
@@ -18,6 +18,7 @@ type TrainerPayload = {
 };
 
 export default function TrainerResourcesPage() {
+  const uploadSectionRef = useRef<HTMLFormElement | null>(null);
   const [mediaQueue, setMediaQueue] = useState<MediaItem[]>([]);
   const [modules, setModules] = useState<TrainerPayload["modules"]>([]);
   const [courseId, setCourseId] = useState("");
@@ -94,13 +95,40 @@ export default function TrainerResourcesPage() {
     }
   }
 
+  function downloadCsv(filename: string, rows: string[][]) {
+    const content = rows
+      .map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(","))
+      .join("\n");
+    const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleExport() {
+    const rows: string[][] = [["Nom", "Type", "Statut"]];
+    mediaQueue.forEach((item) => rows.push([item.name, item.type, item.status]));
+    downloadCsv("digitechpro-trainer-media.csv", rows);
+  }
+
+  function handlePrimaryAction() {
+    uploadSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <AuthGuard role="TRAINER">
       <DashboardShell
         title="Ressources"
-        subtitle="Centralisez vos supports et contenus de cours." 
+        subtitle="Centralisez vos supports et contenus de cours."
         accent="Formateur"
         role="TRAINER"
+        exportLabel="Exporter"
+        primaryLabel="Ajouter un media"
+        onExport={handleExport}
+        onPrimaryAction={handlePrimaryAction}
       >
         <section className="rounded-3xl bg-white p-6 shadow-soft">
           <h2 className="text-lg font-semibold">Creation rapide</h2>
@@ -165,7 +193,11 @@ export default function TrainerResourcesPage() {
               </button>
             </form>
 
-            <form onSubmit={handleUploadUrl} className="grid gap-3 rounded-2xl border border-ink/10 p-4">
+            <form
+              onSubmit={handleUploadUrl}
+              className="grid gap-3 rounded-2xl border border-ink/10 p-4"
+              ref={uploadSectionRef}
+            >
               <p className="text-sm font-semibold">Upload media</p>
               <input
                 className="rounded-xl border border-ink/10 px-3 py-2 text-sm"
@@ -191,7 +223,11 @@ export default function TrainerResourcesPage() {
           <div className="rounded-3xl bg-white p-6 shadow-soft">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="text-lg font-semibold">Medias a traiter</h2>
-              <button className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold">
+              <button
+                className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold"
+                onClick={handlePrimaryAction}
+                type="button"
+              >
                 Ajouter un media
               </button>
             </div>

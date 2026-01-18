@@ -15,9 +15,9 @@ export declare class UsersService {
             id: string;
             createdAt: Date;
             name: string;
-            email: string;
-            role: import(".prisma/client").$Enums.UserRole;
             status: import(".prisma/client").$Enums.UserStatus;
+            role: import(".prisma/client").$Enums.UserRole;
+            email: string;
         }[];
         page: number;
         pageSize: number;

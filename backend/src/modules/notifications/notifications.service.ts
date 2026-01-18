@@ -1,9 +1,10 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import { PrismaService } from "../../prisma/prisma.service";
 import { NotificationsGateway } from "./notifications.gateway";
 
 @Injectable()
 export class NotificationsService {
+  private readonly logger = new Logger(NotificationsService.name);
   constructor(
     private readonly prisma: PrismaService,
     private readonly gateway: NotificationsGateway,
@@ -28,14 +29,18 @@ export class NotificationsService {
       return;
     }
 
-    await this.prisma.notification.create({
-      data: {
-        userId: admin.id,
-        type: "SYSTEM",
-        title,
-        body,
-      },
-    });
+    try {
+      await this.prisma.notification.create({
+        data: {
+          userId: admin.id,
+          type: "SYSTEM",
+          title,
+          body,
+        },
+      });
+    } catch (error) {
+      this.logger.warn("Failed to persist admin notification, broadcasting anyway.");
+    }
 
     this.gateway.broadcast({ title, detail: body, role: "ADMIN" });
   }
@@ -47,14 +52,18 @@ export class NotificationsService {
       return;
     }
 
-    await this.prisma.notification.create({
-      data: {
-        userId: user.id,
-        type: "SYSTEM",
-        title,
-        body,
-      },
-    });
+    try {
+      await this.prisma.notification.create({
+        data: {
+          userId: user.id,
+          type: "SYSTEM",
+          title,
+          body,
+        },
+      });
+    } catch (error) {
+      this.logger.warn(`Failed to persist ${role} notification, broadcasting anyway.`);
+    }
 
     this.gateway.broadcast({ title, detail: body, role });
   }

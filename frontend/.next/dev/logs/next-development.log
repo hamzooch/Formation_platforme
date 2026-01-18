@@ -495,3 +495,2126 @@ It can also happen if the client has a browser extension installed which messes 
 
 [02:14:05.717] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [02:15:55.316] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. Nouvelle inscription
+[02:30:22.632] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:30:22.754] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/student/c..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="fr">
+                          <body
+-                           __processed_a00bacea-8f1e-4582-97f3-36e992abdb63__="true"
+                          >
+                  ...
+
+[02:30:29.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:30:29.218] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/trainer/l..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <RootLayout>
+                        <html lang="fr">
+                          <body
+-                           __processed_e96b6f35-0888-4936-9ba6-805e173b8aae__="true"
+                          >
+                  ...
+
+[02:32:08.425] Server  LOG     ✓ Compiled in 496ms
+[02:32:50.297] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:33:55.599] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:38:12.530] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:39:18.024] Server  LOG     ✓ Compiled in 287ms
+[02:43:20.611] Server  LOG     ✓ Compiled in 327ms
+[02:47:18.837] Server  LOG     ✓ Compiled in 419ms
+[02:47:19.342] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/components/ToastHost.tsx:4:1
+Export createSocket doesn't exist in target module
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { createSocket, NotificationPayload } from "../lib/realtime";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { getSession } from "../lib/auth";
+  6 |
+  7 | type Toast = NotificationPayload & { id: string };
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ToastHost.tsx [Client Component Browser]
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ToastHost.tsx [Client Component SSR]
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/components/ToastHost.tsx:4:1
+Export createSocket doesn't exist in target module
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { createSocket, NotificationPayload } from "../lib/realtime";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { getSession } from "../lib/auth";
+  6 |
+  7 | type Toast = NotificationPayload & { id: string };
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ToastHost.tsx [Client Component Browser]
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ToastHost.tsx [Client Component SSR]
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:19.342] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:19.343] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/ToastHost.tsx:4:1
+Export createSocket doesn't exist in target module
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { createSocket, NotificationPayload } from "../lib/realtime";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { getSession } from "../lib/auth";
+  6 |
+  7 | type Toast = NotificationPayload & { id: string };
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ToastHost.tsx [Client Component Browser]
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ToastHost.tsx [Client Component SSR]
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/ToastHost.tsx:4:1
+Export createSocket doesn't exist in target module
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { createSocket, NotificationPayload } from "../lib/realtime";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { getSession } from "../lib/auth";
+  6 |
+  7 | type Toast = NotificationPayload & { id: string };
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ToastHost.tsx [Client Component Browser]
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ToastHost.tsx [Client Component SSR]
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/ToastHost.tsx:4:1
+Export createSocket doesn't exist in target module
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { createSocket, NotificationPayload } from "../lib/realtime";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { getSession } from "../lib/auth";
+  6 |
+  7 | type Toast = NotificationPayload & { id: string };
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ToastHost.tsx [Client Component Browser]
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ToastHost.tsx [Client Component SSR]
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/components/ToastHost.tsx:4:1
+Export createSocket doesn't exist in target module
+  2 |
+  3 | import { useEffect, useState } from "react";
+> 4 | import { createSocket, NotificationPayload } from "../lib/realtime";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 | import { getSession } from "../lib/auth";
+  6 |
+  7 | type Toast = NotificationPayload & { id: string };
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/ToastHost.tsx [Client Component Browser]
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/ToastHost.tsx [Client Component SSR]
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:19.493] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:27.885] Server  LOG     ✓ Compiled in 151ms
+[02:47:28.126] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.126] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.126] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.126] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.126] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:28.126] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:28.126] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:28.126] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:28.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/components/DashboardShell.tsx:8:1
+Export createSocket doesn't exist in target module
+   6 | import { clearSession, getSession } from "../lib/auth";
+   7 | import { ToastHost } from "./ToastHost";
+>  8 | import { createSocket, NotificationPayload } from "../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   9 |
+  10 | type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
+  11 |
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/components/DashboardShell.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/components/DashboardShell.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:47:28.495] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:49.002] Server  LOG     ✓ Compiled in 331ms
+[02:48:49.310] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:49.310] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:49.310] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:48:49.310] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:48:49.310] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:49.310] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:49.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:49.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:49.494] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:48:49.494] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:48:49.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:49.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:49.495] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:49.495] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:49.495] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:48:49.495] Browser ERROR   ./src/app/trainer/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type TrainerPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/trainer/page.tsx [Client Component Browser]
+    ./src/app/trainer/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/trainer/page.tsx [Client Component SSR]
+    ./src/app/trainer/page.tsx [Server Component]
+[02:48:49.495] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:49.495] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:56.458] Server  LOG     ✓ Compiled in 126ms
+[02:48:56.773] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:56.774] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:56.774] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:56.774] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/admin/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 | import {
+   9 |   AdminCategory,
+  10 |   AdminReport,
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/page.tsx [Client Component Browser]
+    ./src/app/admin/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/page.tsx [Client Component SSR]
+    ./src/app/admin/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:48:57.494] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:49:01.524] Server  LOG     ✓ Compiled in 133ms
+[02:49:01.677] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:49:01.677] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:49:02.492] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:49:02.492] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:49:02.493] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-client] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:49:02.493] Browser ERROR   ./src/app/student/page.tsx:7:1
+Export createSocket doesn't exist in target module
+   5 | import { AuthGuard } from "../../components/AuthGuard";
+   6 | import { apiGet } from "../../lib/api";
+>  7 | import { createSocket, NotificationPayload } from "../../lib/realtime";
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   8 |
+   9 | type StudentPayload = {
+  10 |   stats: { label: string; value: string }[];
+
+The export createSocket was not found in module [project]/src/lib/realtime.ts [app-ssr] (ecmascript).
+Did you mean to import connectSocket?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Client Component Browser:
+    ./src/app/student/page.tsx [Client Component Browser]
+    ./src/app/student/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/student/page.tsx [Client Component SSR]
+    ./src/app/student/page.tsx [Server Component]
+[02:49:08.723] Server  LOG     ✓ Compiled in 106ms
+[02:49:29.888] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:52:56.642] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:53:57.149] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:56:31.526] Server  LOG     ✓ Compiled in 246ms
+[03:09:48.800] Server  LOG     ✓ Compiled in 545ms
+[03:10:10.956] Server  LOG     ✓ Compiled in 137ms
+[03:11:00.368] Server  LOG     ✓ Compiled in 319ms
+[03:11:09.841] Server  LOG     ✓ Compiled in 307ms
+[03:11:17.401] Server  LOG     ✓ Compiled in 73ms
+[03:11:26.410] Server  LOG     ✓ Compiled in 309ms
+[03:11:32.848] Server  LOG     ✓ Compiled in 137ms
+[03:11:42.117] Server  LOG     ✓ Compiled in 120ms
+[03:11:56.254] Server  LOG     ✓ Compiled in 149ms

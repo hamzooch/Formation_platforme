@@ -27,11 +27,13 @@ export class EnrollmentsService {
       createdAt: new Date().toISOString(),
     };
     this.enrollments.push(enrollment);
-    this.notifications.pushToRole(
-      "TRAINER",
-      "Nouvelle inscription",
-      `Demande d'inscription pour le cours ${courseId}.`,
-    );
+    this.notifications
+      .pushToRole(
+        "TRAINER",
+        "Nouvelle inscription",
+        `Demande d'inscription pour le cours ${courseId}.`,
+      )
+      .catch(() => undefined);
     return { message: "pending approval", enrollment };
   }
 

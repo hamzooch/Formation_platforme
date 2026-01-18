@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { DashboardShell } from "../../components/DashboardShell";
 import { AuthGuard } from "../../components/AuthGuard";
 import { apiGet } from "../../lib/api";
-import { createSocket, NotificationPayload } from "../../lib/realtime";
+import { connectSocket, NotificationPayload } from "../../lib/realtime";
 import {
   AdminCategory,
   AdminReport,
@@ -74,12 +74,13 @@ export default function AdminDashboard() {
   }, []);
 
   useEffect(() => {
-    const socket = createSocket();
-    socket.on("notification", (payload: NotificationPayload) => {
+    const socket = connectSocket();
+    const handleNotification = (payload: NotificationPayload) => {
       setLiveNotifications((prev) => [payload, ...prev].slice(0, 6));
-    });
+    };
+    socket.on("notification", handleNotification);
     return () => {
-      socket.disconnect();
+      socket.off("notification", handleNotification);
     };
   }, []);
 

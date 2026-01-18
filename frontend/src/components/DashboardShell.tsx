@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { clearSession, getSession } from "../lib/auth";
 import { ToastHost } from "./ToastHost";
-import { createSocket, NotificationPayload } from "../lib/realtime";
+import { connectSocket, NotificationPayload } from "../lib/realtime";
 
 type DashboardRole = "ADMIN" | "TRAINER" | "STUDENT";
 
@@ -20,6 +20,10 @@ type DashboardShellProps = {
   accent: string;
   role: DashboardRole;
   children: React.ReactNode;
+  exportLabel?: string;
+  primaryLabel?: string;
+  onExport?: () => void;
+  onPrimaryAction?: () => void;
 };
 
 const NAV_ITEMS: Record<DashboardRole, NavItem[]> = {
@@ -52,7 +56,17 @@ const NAV_ITEMS: Record<DashboardRole, NavItem[]> = {
   ],
 };
 
-export function DashboardShell({ title, subtitle, accent, role, children }: DashboardShellProps) {
+export function DashboardShell({
+  title,
+  subtitle,
+  accent,
+  role,
+  children,
+  exportLabel = "Exporter",
+  primaryLabel = "Nouvelle action",
+  onExport,
+  onPrimaryAction,
+}: DashboardShellProps) {
   const pathname = usePathname();
   const router = useRouter();
   const items = NAV_ITEMS[role];
@@ -79,16 +93,17 @@ export function DashboardShell({ title, subtitle, accent, role, children }: Dash
   }, []);
 
   useEffect(() => {
-    const socket = createSocket();
-    socket.on("notification", (payload: NotificationPayload) => {
+    const socket = connectSocket();
+    const handleNotification = (payload: NotificationPayload) => {
       const session = getSession();
       if (payload.role && session?.user.role !== payload.role) {
         return;
       }
       setUnread((prev) => prev + 1);
-    });
+    };
+    socket.on("notification", handleNotification);
     return () => {
-      socket.disconnect();
+      socket.off("notification", handleNotification);
     };
   }, []);
 
@@ -145,11 +160,25 @@ export function DashboardShell({ title, subtitle, accent, role, children }: Dash
                 <span className="h-2 w-2 rounded-full bg-accent" />
                 <span>Recherche rapide</span>
               </div>
-              <button className="rounded-xl border border-ink/15 px-4 py-2 text-sm font-semibold">
-                Exporter
+              <button
+                className={`rounded-xl border border-ink/15 px-4 py-2 text-sm font-semibold ${
+                  onExport ? "" : "cursor-not-allowed opacity-60"
+                }`}
+                onClick={onExport}
+                disabled={!onExport}
+                type="button"
+              >
+                {exportLabel}
               </button>
-              <button className="rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white">
-                Nouvelle action
+              <button
+                className={`rounded-xl bg-accent px-4 py-2 text-sm font-semibold text-white ${
+                  onPrimaryAction ? "" : "cursor-not-allowed opacity-60"
+                }`}
+                onClick={onPrimaryAction}
+                disabled={!onPrimaryAction}
+                type="button"
+              >
+                {primaryLabel}
               </button>
               <button
                 className="relative flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-white"

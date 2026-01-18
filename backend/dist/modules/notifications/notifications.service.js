@@ -8,15 +8,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var NotificationsService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotificationsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../prisma/prisma.service");
 const notifications_gateway_1 = require("./notifications.gateway");
-let NotificationsService = class NotificationsService {
+let NotificationsService = NotificationsService_1 = class NotificationsService {
     constructor(prisma, gateway) {
         this.prisma = prisma;
         this.gateway = gateway;
+        this.logger = new common_1.Logger(NotificationsService_1.name);
     }
     listNotifications() {
         return this.prisma.notification
@@ -34,14 +36,19 @@ let NotificationsService = class NotificationsService {
             this.gateway.broadcast({ title, detail: body, role: "ADMIN" });
             return;
         }
-        await this.prisma.notification.create({
-            data: {
-                userId: admin.id,
-                type: "SYSTEM",
-                title,
-                body,
-            },
-        });
+        try {
+            await this.prisma.notification.create({
+                data: {
+                    userId: admin.id,
+                    type: "SYSTEM",
+                    title,
+                    body,
+                },
+            });
+        }
+        catch (error) {
+            this.logger.warn("Failed to persist admin notification, broadcasting anyway.");
+        }
         this.gateway.broadcast({ title, detail: body, role: "ADMIN" });
     }
     async pushToRole(role, title, body) {
@@ -50,19 +57,24 @@ let NotificationsService = class NotificationsService {
             this.gateway.broadcast({ title, detail: body, role });
             return;
         }
-        await this.prisma.notification.create({
-            data: {
-                userId: user.id,
-                type: "SYSTEM",
-                title,
-                body,
-            },
-        });
+        try {
+            await this.prisma.notification.create({
+                data: {
+                    userId: user.id,
+                    type: "SYSTEM",
+                    title,
+                    body,
+                },
+            });
+        }
+        catch (error) {
+            this.logger.warn(`Failed to persist ${role} notification, broadcasting anyway.`);
+        }
         this.gateway.broadcast({ title, detail: body, role });
     }
 };
 exports.NotificationsService = NotificationsService;
-exports.NotificationsService = NotificationsService = __decorate([
+exports.NotificationsService = NotificationsService = NotificationsService_1 = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [prisma_service_1.PrismaService,
         notifications_gateway_1.NotificationsGateway])

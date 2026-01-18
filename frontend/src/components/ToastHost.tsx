@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createSocket, NotificationPayload } from "../lib/realtime";
+import { connectSocket, NotificationPayload } from "../lib/realtime";
 import { getSession } from "../lib/auth";
 
 type Toast = NotificationPayload & { id: string };
@@ -10,8 +10,8 @@ export function ToastHost() {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   useEffect(() => {
-    const socket = createSocket();
-    socket.on("notification", (payload: NotificationPayload) => {
+    const socket = connectSocket();
+    const handler = (payload: NotificationPayload) => {
       const session = getSession();
       if (payload.role && session?.user.role !== payload.role) {
         return;
@@ -21,10 +21,11 @@ export function ToastHost() {
       setTimeout(() => {
         setToasts((prev) => prev.filter((item) => item.id !== toast.id));
       }, 4500);
-    });
+    };
+    socket.on("notification", handler);
 
     return () => {
-      socket.disconnect();
+      socket.off("notification", handler);
     };
   }, []);
 

@@ -3,6 +3,7 @@ import { NotificationsGateway } from "./notifications.gateway";
 export declare class NotificationsService {
     private readonly prisma;
     private readonly gateway;
+    private readonly logger;
     constructor(prisma: PrismaService, gateway: NotificationsGateway);
     listNotifications(): Promise<{
         notifications: {

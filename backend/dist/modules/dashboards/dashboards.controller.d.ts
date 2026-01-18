@@ -32,6 +32,7 @@ export declare class DashboardsController {
             value: string;
         }[];
         courses: {
+            id: string;
             title: string;
             status: string;
             learners: number;

@@ -1,14 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { DashboardShell } from "../../components/DashboardShell";
 import { AuthGuard } from "../../components/AuthGuard";
 import { apiGet } from "../../lib/api";
-import { createSocket, NotificationPayload } from "../../lib/realtime";
+import { connectSocket, NotificationPayload } from "../../lib/realtime";
 
 type TrainerPayload = {
   stats: { label: string; value: string }[];
-  courses: { title: string; status: string; learners: number; completion: string }[];
+  courses: { id?: string; title: string; status: string; learners: number; completion: string }[];
   tasks: string[];
   modules: { course: string; title: string; lessons: number; status: string }[];
   mediaQueue: { name: string; type: string; status: string }[];
@@ -18,8 +19,11 @@ type TrainerPayload = {
 };
 
 export default function TrainerDashboard() {
+  const router = useRouter();
   const [data, setData] = useState<TrainerPayload | null>(null);
   const [liveNotifications, setLiveNotifications] = useState<NotificationPayload[]>([]);
+  const [socketConnected, setSocketConnected] = useState(false);
+  const [actionMessage, setActionMessage] = useState("");
 
   useEffect(() => {
     apiGet<TrainerPayload>("/dashboard/trainer")
@@ -34,12 +38,22 @@ export default function TrainerDashboard() {
   }, [data]);
 
   useEffect(() => {
-    const socket = createSocket();
-    socket.on("notification", (payload: NotificationPayload) => {
+    const socket = connectSocket();
+    const handleConnect = () => setSocketConnected(true);
+    const handleDisconnect = () => setSocketConnected(false);
+    const handleConnectError = () => setSocketConnected(false);
+    const handleNotification = (payload: NotificationPayload) => {
       setLiveNotifications((prev) => [payload, ...prev].slice(0, 6));
-    });
+    };
+    socket.on("connect", handleConnect);
+    socket.on("disconnect", handleDisconnect);
+    socket.on("connect_error", handleConnectError);
+    socket.on("notification", handleNotification);
     return () => {
-      socket.disconnect();
+      socket.off("connect", handleConnect);
+      socket.off("disconnect", handleDisconnect);
+      socket.off("connect_error", handleConnectError);
+      socket.off("notification", handleNotification);
     };
   }, []);
 
@@ -52,6 +66,47 @@ export default function TrainerDashboard() {
   const revenue = data?.revenue;
   const notifications = liveNotifications;
 
+  function downloadCsv(filename: string, rows: string[][]) {
+    const content = rows.map((row) => row.map((cell) => `"${cell.replace(/"/g, '""')}"`).join(",")).join("\n");
+    const blob = new Blob([content], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
+  }
+
+  function handleExport() {
+    const rows: string[][] = [["Section", "Libelle", "Valeur"]];
+    stats.forEach((stat) => rows.push(["Stats", stat.label, stat.value]));
+    courses.forEach((course) =>
+      rows.push(["Cours", course.title, `${course.status} | ${course.learners} apprenants | ${course.completion}`]),
+    );
+    downloadCsv("digitechpro-trainer-dashboard.csv", rows);
+  }
+
+  function handlePrimaryAction() {
+    router.push("/trainer/courses");
+  }
+
+  function handleOpenCourse(courseId?: string) {
+    if (courseId) {
+      router.push(`/trainer/courses/${courseId}`);
+      return;
+    }
+    setActionMessage("Formation sans identifiant, redirection vers le catalogue.");
+    router.push("/trainer/courses");
+  }
+
+  function handleAddModule() {
+    router.push("/trainer/courses");
+  }
+
+  function handleViewLearners() {
+    router.push("/trainer/learners");
+  }
+
   return (
     <AuthGuard role="TRAINER">
       <DashboardShell
@@ -59,7 +114,29 @@ export default function TrainerDashboard() {
         subtitle="Gerez vos formations et suivez vos apprenants."
         accent="Formateur"
         role="TRAINER"
+        onExport={handleExport}
+        onPrimaryAction={handlePrimaryAction}
       >
+        {actionMessage ? (
+          <section className="rounded-2xl border border-ink/10 bg-white p-4 text-sm text-muted">
+            {actionMessage}
+          </section>
+        ) : null}
+        <section className="rounded-2xl bg-white p-4 shadow-soft">
+          <div className="flex items-center justify-between text-sm">
+            <span className="text-muted">Etat notifications temps reel</span>
+            <span className="flex items-center gap-2">
+              <span
+                className={
+                  socketConnected
+                    ? "h-2 w-2 rounded-full bg-green-500"
+                    : "h-2 w-2 rounded-full bg-red-400"
+                }
+              />
+              {socketConnected ? "Connecte" : "Deconnecte"}
+            </span>
+          </div>
+        </section>
         <section className="grid gap-4 md:grid-cols-3">
           {stats.map((stat) => (
             <div key={stat.label} className="rounded-2xl bg-white p-5 shadow-soft">
@@ -83,7 +160,11 @@ export default function TrainerDashboard() {
                     <span>{course.learners} apprenants</span>
                     <span>{course.completion}</span>
                   </div>
-                  <button className="rounded-xl bg-accent2 px-3 py-2 text-xs font-semibold text-white">
+                  <button
+                    className="rounded-xl bg-accent2 px-3 py-2 text-xs font-semibold text-white"
+                    onClick={() => handleOpenCourse(course.id)}
+                    type="button"
+                  >
                     Ouvrir
                   </button>
                 </div>
@@ -106,7 +187,11 @@ export default function TrainerDashboard() {
           <div className="rounded-3xl bg-white p-6 shadow-soft">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <h2 className="text-lg font-semibold">Modules & lecons</h2>
-              <button className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold">
+              <button
+                className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold"
+                onClick={handleAddModule}
+                type="button"
+              >
                 Ajouter un module
               </button>
             </div>
@@ -152,7 +237,11 @@ export default function TrainerDashboard() {
                     <p className="text-xs text-muted">{learner.course}</p>
                   </div>
                   <span className="text-xs text-muted">{learner.progress}</span>
-                  <button className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold">
+                  <button
+                    className="rounded-xl border border-ink/15 px-3 py-2 text-xs font-semibold"
+                    onClick={handleViewLearners}
+                    type="button"
+                  >
                     Voir
                   </button>
                 </div>

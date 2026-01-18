@@ -19,8 +19,14 @@ let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    listUsers() {
-        return this.usersService.listUsers();
+    listUsers(search, role, status, page, pageSize) {
+        return this.usersService.listUsers({
+            search,
+            role,
+            status,
+            page: page ? Number(page) : undefined,
+            pageSize: pageSize ? Number(pageSize) : undefined,
+        });
     }
     updateStatus(id, body) {
         return this.usersService.updateStatus(id, body.status);
@@ -29,8 +35,13 @@ let UsersController = class UsersController {
 exports.UsersController = UsersController;
 __decorate([
     (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)("search")),
+    __param(1, (0, common_1.Query)("role")),
+    __param(2, (0, common_1.Query)("status")),
+    __param(3, (0, common_1.Query)("page")),
+    __param(4, (0, common_1.Query)("pageSize")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String, String, String, String, String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "listUsers", null);
 __decorate([

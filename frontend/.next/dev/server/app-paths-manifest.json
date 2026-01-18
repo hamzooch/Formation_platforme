@@ -1,5 +1,22 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/admin/categories/page": "app/admin/categories/page.js",
+  "/admin/courses/page": "app/admin/courses/page.js",
+  "/admin/moderation/page": "app/admin/moderation/page.js",
   "/admin/page": "app/admin/page.js",
+  "/admin/settings/page": "app/admin/settings/page.js",
+  "/admin/users/page": "app/admin/users/page.js",
   "/login/page": "app/login/page.js",
-  "/page": "app/page.js"
+  "/page": "app/page.js",
+  "/student/certificates/page": "app/student/certificates/page.js",
+  "/student/courses/page": "app/student/courses/page.js",
+  "/student/page": "app/student/page.js",
+  "/student/progress/page": "app/student/progress/page.js",
+  "/trainer/courses/page": "app/trainer/courses/page.js",
+  "/trainer/learners/page": "app/trainer/learners/page.js",
+  "/trainer/page": "app/trainer/page.js",
+  "/trainer/progress/page": "app/trainer/progress/page.js",
+  "/trainer/resources/page": "app/trainer/resources/page.js",
+  "/trainer/revenue/page": "app/trainer/revenue/page.js",
+  "/trainer/settings/page": "app/trainer/settings/page.js"
 }

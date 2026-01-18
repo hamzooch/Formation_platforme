@@ -9,9 +9,13 @@ import { ProgressModule } from "./modules/progress/progress.module";
 import { NotificationsModule } from "./modules/notifications/notifications.module";
 import { MediaModule } from "./modules/media/media.module";
 import { DashboardsModule } from "./modules/dashboards/dashboards.module";
+import { AdminModule } from "./modules/admin/admin.module";
+import { PrismaModule } from "./prisma/prisma.module";
+import { SeedModule } from "./modules/seed/seed.module";
 
 @Module({
   imports: [
+    PrismaModule,
     AuthModule,
     UsersModule,
     CoursesModule,
@@ -22,6 +26,8 @@ import { DashboardsModule } from "./modules/dashboards/dashboards.module";
     NotificationsModule,
     MediaModule,
     DashboardsModule,
+    AdminModule,
+    SeedModule,
   ],
 })
 export class AppModule {}

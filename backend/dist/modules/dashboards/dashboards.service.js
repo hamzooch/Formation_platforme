@@ -5,79 +5,175 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DashboardsService = void 0;
 const common_1 = require("@nestjs/common");
+const prisma_service_1 = require("../../prisma/prisma.service");
 let DashboardsService = class DashboardsService {
+    constructor(prisma) {
+        this.prisma = prisma;
+    }
     adminStats() {
-        return {
-            stats: [
-                { label: "Comptes a valider", value: "18" },
-                { label: "Formations publiees", value: "128" },
-                { label: "Signalements", value: "6" },
-                { label: "Taux de completion", value: "91%" },
-            ],
-            alerts: [
-                {
-                    title: "Validation formateur",
-                    detail: "2 nouveaux comptes en attente",
-                    tag: "Prioritaire",
-                },
-                {
-                    title: "Categorie a revoir",
-                    detail: "Data & IA demande une fusion",
-                    tag: "A verifier",
-                },
-                {
-                    title: "Cours signale",
-                    detail: "Module 3 - contenu obsolette",
-                    tag: "Moderation",
-                },
-            ],
-            overview: [
-                { label: "Activite hebdo", value: "+24% inscriptions" },
-                { label: "Contenu a moderer", value: "12 elements" },
-                { label: "Temps moyen cours", value: "46 min" },
-                { label: "Nouveaux formateurs", value: "+8 ce mois" },
-            ],
-        };
+        return Promise.all([
+            this.prisma.user.count({ where: { role: "TRAINER", status: "PENDING" } }),
+            this.prisma.course.count({ where: { status: "PUBLISHED" } }),
+            this.prisma.report.count(),
+            this.prisma.user.findFirst({ where: { role: "ADMIN" } }),
+        ]).then(async ([pendingTrainers, publishedCourses, reportsCount, admin]) => {
+            const notifications = admin
+                ? await this.prisma.notification.findMany({
+                    where: { userId: admin.id },
+                    orderBy: { createdAt: "desc" },
+                    take: 3,
+                })
+                : [];
+            return {
+                stats: [
+                    { label: "Comptes a valider", value: String(pendingTrainers) },
+                    { label: "Formations publiees", value: String(publishedCourses) },
+                    { label: "Signalements", value: String(reportsCount) },
+                    { label: "Taux de completion", value: "91%" },
+                ],
+                alerts: [
+                    {
+                        title: "Validation formateur",
+                        detail: `${pendingTrainers} comptes en attente`,
+                        tag: "Prioritaire",
+                    },
+                    {
+                        title: "Categorie a revoir",
+                        detail: "Data & IA demande une fusion",
+                        tag: "A verifier",
+                    },
+                    {
+                        title: "Cours signale",
+                        detail: "Module 3 - contenu obsolette",
+                        tag: "Moderation",
+                    },
+                ],
+                overview: [
+                    { label: "Activite hebdo", value: "+24% inscriptions" },
+                    { label: "Contenu a moderer", value: "12 elements" },
+                    { label: "Temps moyen cours", value: "46 min" },
+                    { label: "Nouveaux formateurs", value: "+8 ce mois" },
+                ],
+                activity: [
+                    {
+                        title: "Nouvelle formation publiee",
+                        detail: "API NestJS avancees",
+                        time: "Il y a 2h",
+                    },
+                    {
+                        title: "Formateur valide",
+                        detail: "Lina A. (trainer)",
+                        time: "Il y a 4h",
+                    },
+                    {
+                        title: "Categorie archivee",
+                        detail: "Product Design",
+                        time: "Hier",
+                    },
+                ],
+                notifications: notifications.map((note) => ({
+                    title: note.title,
+                    detail: note.body,
+                })),
+            };
+        });
     }
     trainerStats() {
-        return {
-            stats: [
-                { label: "Formations actives", value: "3" },
-                { label: "Apprenants inscrits", value: "497" },
-                { label: "Progression moyenne", value: "71%" },
-            ],
-            courses: [
-                {
-                    title: "Full-Stack TypeScript",
-                    status: "Publie",
-                    learners: 312,
-                    completion: "68%",
-                },
-                {
-                    title: "System Design pour SaaS",
-                    status: "Brouillon",
+        return this.prisma.user
+            .findFirst({ where: { role: "TRAINER" } })
+            .then(async (trainer) => {
+            const courses = trainer
+                ? await this.prisma.course.findMany({
+                    where: { trainerId: trainer.id },
+                    orderBy: { createdAt: "desc" },
+                })
+                : [];
+            return {
+                stats: [
+                    { label: "Formations actives", value: String(courses.length) },
+                    { label: "Apprenants inscrits", value: "497" },
+                    { label: "Progression moyenne", value: "71%" },
+                ],
+                courses: courses.map((course) => ({
+                    title: course.title,
+                    status: course.status === "PUBLISHED" ? "Publie" : "Brouillon",
                     learners: 0,
                     completion: "-",
+                })),
+                tasks: [
+                    "Finaliser le module 4 sur la scalabilite",
+                    "Repondre aux questions sur la lecon 2",
+                    "Uploader le support PDF version 3",
+                ],
+                modules: [
+                    {
+                        course: courses[0]?.title ?? "Full-Stack TypeScript",
+                        title: "Module 3 - API avancees",
+                        lessons: 6,
+                        status: "En cours",
+                    },
+                    {
+                        course: courses[1]?.title ?? "API NestJS avancees",
+                        title: "Module 1 - Introduction",
+                        lessons: 4,
+                        status: "Publie",
+                    },
+                ],
+                mediaQueue: [
+                    {
+                        name: "support-architecture.pdf",
+                        type: "PDF",
+                        status: "A traiter",
+                    },
+                    {
+                        name: "lesson-12.mp4",
+                        type: "Video",
+                        status: "Upload termine",
+                    },
+                ],
+                learners: [
+                    {
+                        name: "Karim B.",
+                        course: courses[0]?.title ?? "Full-Stack TypeScript",
+                        progress: "54%",
+                    },
+                    {
+                        name: "Nora P.",
+                        course: courses[1]?.title ?? "API NestJS avancees",
+                        progress: "82%",
+                    },
+                    {
+                        name: "Yassine T.",
+                        course: courses[0]?.title ?? "Full-Stack TypeScript",
+                        progress: "33%",
+                    },
+                ],
+                revenue: {
+                    month: "12 480 EUR",
+                    growth: "+18%",
+                    pending: "1 250 EUR",
                 },
-                {
-                    title: "API NestJS avancees",
-                    status: "Publie",
-                    learners: 185,
-                    completion: "74%",
-                },
-            ],
-            tasks: [
-                "Finaliser le module 4 sur la scalabilite",
-                "Repondre aux questions sur la lecon 2",
-                "Uploader le support PDF version 3",
-            ],
-        };
+                notifications: [
+                    {
+                        title: "Nouveau commentaire",
+                        detail: "Lecon 4 - question sur l'exercice",
+                    },
+                    {
+                        title: "Evaluation terminee",
+                        detail: "Cours Full-Stack TypeScript",
+                    },
+                ],
+            };
+        });
     }
     studentStats() {
-        return {
+        return this.prisma.course.findMany({ orderBy: { createdAt: "desc" }, take: 3 }).then((courses) => ({
             stats: [
                 { label: "Formations en cours", value: "3" },
                 { label: "Lecons terminees", value: "26" },
@@ -117,11 +213,42 @@ let DashboardsService = class DashboardsService {
                     duration: "16 min",
                 },
             ],
-        };
+            catalog: courses.map((course) => ({
+                title: course.title,
+                category: "General",
+                duration: "4h 00",
+            })),
+            resume: {
+                title: "UI Design Systeme",
+                lesson: "Lecon 12 - Grille et rythme",
+                progress: "78%",
+            },
+            certificates: [
+                {
+                    title: "Fundamentals UX",
+                    date: "10 Jan 2026",
+                },
+                {
+                    title: "DevOps Essentials",
+                    date: "02 Dec 2025",
+                },
+            ],
+            notifications: [
+                {
+                    title: "Nouveau module disponible",
+                    detail: "Architecte Logiciel Cloud",
+                },
+                {
+                    title: "Rappel objectif",
+                    detail: "2 lecons a terminer cette semaine",
+                },
+            ],
+        }));
     }
 };
 exports.DashboardsService = DashboardsService;
 exports.DashboardsService = DashboardsService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
 ], DashboardsService);
 //# sourceMappingURL=dashboards.service.js.map

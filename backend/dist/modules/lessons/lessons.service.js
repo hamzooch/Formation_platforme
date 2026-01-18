@@ -9,8 +9,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LessonsService = void 0;
 const common_1 = require("@nestjs/common");
 let LessonsService = class LessonsService {
-    createLesson(body) {
-        return { message: "create lesson stub", body };
+    constructor() {
+        this.lessons = [];
+    }
+    createLesson(moduleId, body) {
+        const lesson = {
+            id: `lesson_${Date.now()}`,
+            moduleId,
+            title: body.title,
+            type: body.type,
+            order: body.order,
+            videoUrl: body.videoUrl,
+            docUrl: body.docUrl,
+        };
+        this.lessons.push(lesson);
+        return lesson;
+    }
+    listLessons(moduleId) {
+        return this.lessons.filter((item) => item.moduleId === moduleId);
     }
 };
 exports.LessonsService = LessonsService;

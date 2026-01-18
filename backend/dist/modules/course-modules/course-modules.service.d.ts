@@ -1,12 +1,18 @@
 export declare class CourseModulesService {
-    createModule(body: {
+    private modules;
+    createModule(courseId: string, body: {
         title: string;
         order: number;
     }): {
-        message: string;
-        body: {
-            title: string;
-            order: number;
-        };
+        id: string;
+        courseId: string;
+        title: string;
+        order: number;
     };
+    listModules(courseId: string): {
+        id: string;
+        courseId: string;
+        title: string;
+        order: number;
+    }[];
 }

@@ -19,18 +19,29 @@ let CourseModulesController = class CourseModulesController {
     constructor(courseModulesService) {
         this.courseModulesService = courseModulesService;
     }
-    createModule(body) {
-        return this.courseModulesService.createModule(body);
+    createModule(courseId, body) {
+        return this.courseModulesService.createModule(courseId, body);
+    }
+    listModules(courseId) {
+        return this.courseModulesService.listModules(courseId);
     }
 };
 exports.CourseModulesController = CourseModulesController;
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Param)("courseId")),
+    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", void 0)
 ], CourseModulesController.prototype, "createModule", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Param)("courseId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], CourseModulesController.prototype, "listModules", null);
 exports.CourseModulesController = CourseModulesController = __decorate([
     (0, common_1.Controller)("courses/:courseId/modules"),
     __metadata("design:paramtypes", [course_modules_service_1.CourseModulesService])

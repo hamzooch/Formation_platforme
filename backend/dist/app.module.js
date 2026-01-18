@@ -18,12 +18,16 @@ const progress_module_1 = require("./modules/progress/progress.module");
 const notifications_module_1 = require("./modules/notifications/notifications.module");
 const media_module_1 = require("./modules/media/media.module");
 const dashboards_module_1 = require("./modules/dashboards/dashboards.module");
+const admin_module_1 = require("./modules/admin/admin.module");
+const prisma_module_1 = require("./prisma/prisma.module");
+const seed_module_1 = require("./modules/seed/seed.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            prisma_module_1.PrismaModule,
             auth_module_1.AuthModule,
             users_module_1.UsersModule,
             courses_module_1.CoursesModule,
@@ -34,6 +38,8 @@ exports.AppModule = AppModule = __decorate([
             notifications_module_1.NotificationsModule,
             media_module_1.MediaModule,
             dashboards_module_1.DashboardsModule,
+            admin_module_1.AdminModule,
+            seed_module_1.SeedModule,
         ],
     })
 ], AppModule);

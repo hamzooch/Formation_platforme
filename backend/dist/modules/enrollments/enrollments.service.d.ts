@@ -1,9 +1,39 @@
+import { NotificationsService } from "../notifications/notifications.service";
 export declare class EnrollmentsService {
-    enroll(courseId: string): {
+    private readonly notifications;
+    constructor(notifications: NotificationsService);
+    private enrollments;
+    enroll(courseId: string, userId: string): {
         message: string;
-        courseId: string;
+        enrollment: {
+            id: string;
+            courseId: string;
+            userId: string;
+            status: "PENDING" | "APPROVED" | "REJECTED";
+            createdAt: string;
+        };
     };
     listEnrollments(): {
-        message: string;
+        enrollments: {
+            id: string;
+            courseId: string;
+            userId: string;
+            status: "PENDING" | "APPROVED" | "REJECTED";
+            createdAt: string;
+        }[];
     };
+    listByCourse(courseId: string): {
+        id: string;
+        courseId: string;
+        userId: string;
+        status: "PENDING" | "APPROVED" | "REJECTED";
+        createdAt: string;
+    }[];
+    updateStatus(id: string, status: "APPROVED" | "REJECTED"): {
+        id: string;
+        courseId: string;
+        userId: string;
+        status: "PENDING" | "APPROVED" | "REJECTED";
+        createdAt: string;
+    } | null;
 }

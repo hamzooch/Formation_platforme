@@ -10,12 +10,14 @@ exports.EnrollmentsModule = void 0;
 const common_1 = require("@nestjs/common");
 const enrollments_controller_1 = require("./enrollments.controller");
 const enrollments_service_1 = require("./enrollments.service");
+const notifications_module_1 = require("../notifications/notifications.module");
 let EnrollmentsModule = class EnrollmentsModule {
 };
 exports.EnrollmentsModule = EnrollmentsModule;
 exports.EnrollmentsModule = EnrollmentsModule = __decorate([
     (0, common_1.Module)({
-        controllers: [enrollments_controller_1.EnrollmentsController],
+        imports: [notifications_module_1.NotificationsModule],
+        controllers: [enrollments_controller_1.EnrollmentsController, enrollments_controller_1.CourseEnrollmentsController, enrollments_controller_1.EnrollmentActionsController],
         providers: [enrollments_service_1.EnrollmentsService],
     })
 ], EnrollmentsModule);

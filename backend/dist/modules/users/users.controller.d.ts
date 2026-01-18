@@ -2,14 +2,26 @@ import { UsersService } from "./users.service";
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    listUsers(): {
-        message: string;
-    };
+    listUsers(search?: string, role?: "ADMIN" | "TRAINER" | "STUDENT", status?: "ACTIVE" | "BLOCKED" | "PENDING", page?: string, pageSize?: string): Promise<{
+        users: {
+            id: string;
+            createdAt: Date;
+            name: string;
+            email: string;
+            role: import(".prisma/client").$Enums.UserRole;
+            status: import(".prisma/client").$Enums.UserStatus;
+        }[];
+        page: number;
+        pageSize: number;
+        total: number;
+    }>;
     updateStatus(id: string, body: {
         status: "active" | "blocked" | "pending";
-    }): {
+    }): Promise<{
         message: string;
-        id: string;
-        status: "active" | "blocked" | "pending";
-    };
+        user: {
+            id: string;
+            status: import(".prisma/client").$Enums.UserStatus;
+        };
+    }>;
 }

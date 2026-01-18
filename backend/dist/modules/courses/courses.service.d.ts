@@ -1,30 +1,38 @@
 export declare class CoursesService {
+    private courses;
     createCourse(body: {
         title: string;
         description: string;
-        categoryId: string;
+        categoryId?: string;
     }): {
-        message: string;
-        body: {
-            title: string;
-            description: string;
-            categoryId: string;
-        };
+        id: string;
+        title: string;
+        description: string;
+        categoryId: string | undefined;
+        status: "PUBLISHED";
     };
     listCourses(): {
-        message: string;
-    };
+        id: string;
+        title: string;
+        description: string;
+        categoryId?: string;
+        status: "PUBLISHED" | "DRAFT";
+    }[];
     getCourse(id: string): {
-        message: string;
         id: string;
-    };
+        title: string;
+        description: string;
+        categoryId?: string;
+        status: "PUBLISHED" | "DRAFT";
+    } | null;
     updateCourse(id: string, body: Record<string, unknown>): {
-        message: string;
         id: string;
-        body: Record<string, unknown>;
-    };
+        title: string;
+        description: string;
+        categoryId?: string;
+        status: "PUBLISHED" | "DRAFT";
+    } | null;
     deleteCourse(id: string): {
-        message: string;
-        id: string;
+        deleted: boolean;
     };
 }

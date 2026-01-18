@@ -1,14 +1,27 @@
 export declare class LessonsService {
-    createLesson(body: {
+    private lessons;
+    createLesson(moduleId: string, body: {
         title: string;
         type: "video" | "document";
         order: number;
+        videoUrl?: string;
+        docUrl?: string;
     }): {
-        message: string;
-        body: {
-            title: string;
-            type: "video" | "document";
-            order: number;
-        };
+        id: string;
+        moduleId: string;
+        title: string;
+        type: "video" | "document";
+        order: number;
+        videoUrl: string | undefined;
+        docUrl: string | undefined;
     };
+    listLessons(moduleId: string): {
+        id: string;
+        moduleId: string;
+        title: string;
+        type: "video" | "document";
+        order: number;
+        videoUrl?: string;
+        docUrl?: string;
+    }[];
 }

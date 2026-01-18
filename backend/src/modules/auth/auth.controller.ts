@@ -19,4 +19,9 @@ export class AuthController {
   refresh(@Body() body: { refreshToken: string }) {
     return this.authService.refresh(body);
   }
+
+  @Post("mock-login")
+  mockLogin(@Body() body: { email: string; role: "ADMIN" | "TRAINER" | "STUDENT" }) {
+    return this.authService.mockLogin(body);
+  }
 }

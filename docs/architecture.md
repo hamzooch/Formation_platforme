@@ -10,10 +10,9 @@
 - Modules: auth, users, courses, course-modules, lessons, enrollments, progress, notifications, media
 
 ## Data Layer
-- PostgreSQL + Prisma
+- MongoDB + Prisma
 - Media stored in S3-compatible bucket with signed uploads
 
 ## Auth
 - JWT access + refresh
 - Role-based access control
-

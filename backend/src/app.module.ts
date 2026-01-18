@@ -8,6 +8,7 @@ import { EnrollmentsModule } from "./modules/enrollments/enrollments.module";
 import { ProgressModule } from "./modules/progress/progress.module";
 import { NotificationsModule } from "./modules/notifications/notifications.module";
 import { MediaModule } from "./modules/media/media.module";
+import { DashboardsModule } from "./modules/dashboards/dashboards.module";
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { MediaModule } from "./modules/media/media.module";
     ProgressModule,
     NotificationsModule,
     MediaModule,
+    DashboardsModule,
   ],
 })
 export class AppModule {}

@@ -1,0 +1,9 @@
+{
+  "name": "digitechpro-backend",
+  "private": true,
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build"
+  }
+}

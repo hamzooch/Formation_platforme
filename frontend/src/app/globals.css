@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:wght@500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  @apply bg-cream text-ink font-body;
+  background-image: radial-gradient(circle at top right, #ffffff 0%, #f7f2ea 48%, #f0e7dc 100%);
+}
+
+.hero-panel {
+  @apply animate-floatIn;
+}
+
